@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aide-mémoire TP Noté - Rédaction & Git</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Aide-mémoire : LaTeX & Git</h1>
+        <nav>
+            <a href="#latex-base">LaTeX : Bases</a>
+            <a href="#latex-format">LaTeX : Mise en forme</a>
+            <a href="#latex-math">LaTeX : Maths & Tableaux</a>
+            <a href="#latex-avance">LaTeX : Code & Figures</a>
+            <a href="#git">Git : Commandes</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="latex-base">
+            <h2>1. Structure LaTeX & Compilation</h2>
+            
+            <div class="card">
+                [cite_start]<h3>Squelette Minimal [cite: 2566, 4630]</h3>
+                <pre><code>\documentclass[french]{article} % Classe + Option langue
+[cite_start]\usepackage[utf8]{inputenc}     % Encodage entrée [cite: 2437]
+[cite_start]\usepackage[T1]{fontenc}        % Encodage sortie [cite: 2433]
+[cite_start]\usepackage{babel}              % Support langue [cite: 2430]
+[cite_start]\usepackage{hyperref}           % Liens cliquables [cite: 3097]
+
+\title{Titre}
+\author{Auteur}
+\date{\today}
+
+\begin{document}
+    [cite_start]\maketitle                  % Affiche le titre [cite: 4533]
+    [cite_start]\tableofcontents            % Table des matières [cite: 4714]
+
+    [cite_start]\section{Introduction}      % [cite: 4718]
+    Votre texte ici.
+\end{document}</code></pre>
+            </div>
+
+            <div class="card">
+                [cite_start]<h3>Compilation [cite: 3203, 3230]</h3>
+                <table>
+                    <tr>
+                        <th>Action</th>
+                        <th>Détail</th>
+                    </tr>
+                    <tr>
+                        <td>Commande</td>
+                        [cite_start]<td><code>pdflatex fichier.tex</code> [cite: 1330]</td>
+                    </tr>
+                    <tr>
+                        <td>Fichiers Aux.</td>
+                        [cite_start]<td><code>.aux</code> (références), <code>.toc</code> (table des matières), <code>.log</code> (journal) [cite: 3223, 3234]</td>
+                    </tr>
+                    <tr>
+                        <td>Répétition</td>
+                        [cite_start]<td>Compiler <strong>2 fois</strong> si références ou TOC incorrectes [cite: 3251]</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="latex-format">
+            <h2>2. Texte & Mise en forme</h2>
+            
+            <div class="split">
+                <div class="card">
+                    [cite_start]<h3>Polices & Styles [cite: 3596, 3639, 3745]</h3>
+                    <table>
+                        <tr>
+                            <th>Effet</th>
+                            <th>Commande</th>
+                            <th>Environnement / Switch</th>
+                        </tr>
+                        <tr>
+                            <td><b>Gras</b></td>
+                            <td><code>\textbf{...}</code></td>
+                            <td><code>\bfseries</code></td>
+                        </tr>
+                        <tr>
+                            <td><i>Italique</i></td>
+                            <td><code>\emph{...}</code> (préferé) ou <code>\textit{...}</code></td>
+                            <td><code>\itshape</code></td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-variant: small-caps;">Petites Capitales</span></td>
+                            <td><code>\textsc{...}</code></td>
+                            <td><code>\scshape</code></td>
+                        </tr>
+                        <tr>
+                            <td><tt>Monospace</tt></td>
+                            <td><code>\texttt{...}</code></td>
+                            <td><code>\ttfamily</code></td>
+                        </tr>
+                        <tr>
+                            <td>Sans Serif</td>
+                            <td><code>\textsf{...}</code></td>
+                            <td><code>\sffamily</code></td>
+                        </tr>
+                        <tr>
+                            <td>Couleur</td>
+                            <td><code>\textcolor{red}{...}</code></td>
+                            <td>Paquet <code>xcolor</code></td>
+                        </tr>
+                        <tr>
+                            <td>Taille</td>
+                            <td colspan="2"><code>\tiny</code>, <code>\small</code>, <code>\normalsize</code>, <code>\large</code>, <code>\Large</code>, <code>\huge</code>, <code>\Huge</code></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="card">
+                    [cite_start]<h3>Listes [cite: 2604, 2618]</h3>
+                    <ul>
+                        <li><strong>Numérotée :</strong> <code>\begin{enumerate} \item ... \end{enumerate}</code></li>
+                        <li><strong>À puces :</strong> <code>\begin{itemize} \item ... \end{itemize}</code></li>
+                        <li><strong>Descriptive :</strong> <code>\begin{description} \item[Titre] ... \end{description}</code></li>
+                        [cite_start]<li><em>Paquet utile :</em> <code>enumitem</code> pour personnaliser[cite: 2689].</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                [cite_start]<h3>Références Croisées [cite: 3022, 3130]</h3>
+                <table>
+                    <tr>
+                        <th>Action</th>
+                        <th>Commande</th>
+                    </tr>
+                    <tr>
+                        <td>Placer une ancre</td>
+                        <td><code>\label{sec/mon-label}</code> (après la section/figure/équation)</td>
+                    </tr>
+                    <tr>
+                        <td>Faire référence</td>
+                        <td><code>\ref{sec/mon-label}</code> (donne le numéro)</td>
+                    </tr>
+                    <tr>
+                        <td>Lien Web</td>
+                        [cite_start]<td><code>\url{...}</code> ou <code>\href{url}{texte}</code> (avec paquet <code>hyperref</code>) [cite: 3126]</td>
+                    </tr>
+                    <tr>
+                        <td>Référence intelligente</td>
+                        [cite_start]<td><code>\cref{...}</code> (avec paquet <code>cleveref</code>, ajoute "Section" auto) [cite: 3138]</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="latex-math">
+            <h2>3. Maths & Tableaux</h2>
+
+            <div class="split">
+                <div class="card">
+                    [cite_start]<h3>Modes Mathématiques [cite: 5061]</h3>
+                    <ul>
+                        [cite_start]<li><strong>Inline (dans le texte) :</strong> <code>$ ... $</code> ou <code>\( ... \)</code> [cite: 5079]</li>
+                        [cite_start]<li><strong>Display (centré) :</strong> <code>\[ ... \]</code> ou environnement <code>equation</code> [cite: 5090]</li>
+                        [cite_start]<li><strong>Paquets requis :</strong> <code>mathtools</code>, <code>amssymb</code>, <code>amsthm</code> [cite: 1351]</li>
+                    </ul>
+                    [cite_start]<h4>Symboles courants [cite: 4952, 2580]</h4>
+                    <p>
+                        Indice : <code>_{i}</code> | Exposant : <code>^{2}</code> | Fraction : <code>\frac{a}{b}</code><br>
+                        Somme : <code>\sum</code> | Produit : <code>\prod</code> | Intégrale : <code>\int</code><br>
+                        Grec : <code>\alpha</code>, <code>\pi</code>, <code>\theta</code> | Ensemble : <code>\mathbb{N}</code><br>
+                        Logique : <code>\forall</code>, <code>\exists</code>, <code>\implies</code>, <code>\iff</code>
+                    </p>
+                </div>
+
+                <div class="card">
+                    [cite_start]<h3>Tableaux (Tabular) [cite: 1014, 1034]</h3>
+                    <pre><code>\begin{tabular}{|l|c|r|} % Colonnes: gauche, centré, droite
+    \hline
+    A & B & C \\      % & sépare les colonnes, \\ change de ligne
+    \hline
+    1 & 2 & 3 \\
+    \hline
+\end{tabular}</code></pre>
+                    <ul>
+                        <li><code>\hline</code> : ligne horizontale.</li>
+                        <li><code>|</code> : ligne verticale (dans la définition des colonnes).</li>
+                        [cite_start]<li>Fusion : <code>\multicolumn{nb}{align}{texte}</code>[cite: 1043].</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="latex-avance">
+            <h2>4. Images, Code & Commandes</h2>
+            
+            <div class="card">
+                [cite_start]<h3>Insertion d'Images [cite: 1108, 1916]</h3>
+                <p>Paquet : <code>graphicx</code></p>
+                [cite_start]<pre><code>\begin{figure}[h] % Environnement flottant (h=here, t=top, b=bottom) [cite: 1962]
+    \centering
+    [cite_start]\includegraphics[width=0.8\linewidth]{image.png} % Options: scale, width, angle [cite: 1120]
+    [cite_start]\caption{Ma légende} % [cite: 1901]
+    \label{fig:mon-image}
+\end{figure}</code></pre>
+            </div>
+
+            <div class="card">
+                [cite_start]<h3>Insertion de Code [cite: 1707, 1726]</h3>
+                <p>Paquet : <code>listings</code></p>
+                <ul>
+                    [cite_start]<li><strong>Dans le texte :</strong> <code>\lstinline{print("hello")}</code> [cite: 1706]</li>
+                    <li><strong>Environnement :</strong> <code>\begin{lstlisting} ... \end{lstlisting}</code></li>
+                    [cite_start]<li><strong>Depuis un fichier :</strong> <code>\lstinputlisting{fichier.py}</code> [cite: 1708]</li>
+                    [cite_start]<li><strong>Configuration :</strong> <code>\lstset{language=Python, basicstyle=\ttfamily}</code> [cite: 1269]</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                [cite_start]<h3>Commandes Personnalisées [cite: 1124, 1156]</h3>
+                <ul>
+                    <li><strong>Simple :</strong> <code>\newcommand{\monNom}{Bruno}</code></li>
+                    <li><strong>Avec argument :</strong> <code>\newcommand{\important}[1]{\textbf{#1}}</code> (usage: <code>\important{Texte}</code>)</li>
+                    [cite_start]<li><strong>Argument optionnel :</strong> <code>\newcommand{\cmd}[2][defaut]{#1 #2}</code> [cite: 1168]</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="git">
+            <h2>5. Git & Gestion de Version</h2>
+
+            <div class="split">
+                <div class="card">
+                    [cite_start]<h3>Configuration & Init [cite: 3385, 3359]</h3>
+                    <pre><code>git config --global user.name "Nom"
+git config --global user.email "email"
+git init        # Créer un dépôt local</code></pre>
+                </div>
+
+                <div class="card">
+                    [cite_start]<h3>Workflow de base [cite: 29, 35, 109, 3470]</h3>
+                    <table>
+                        <tr>
+                            <th>Commande</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <td><code>git status</code></td>
+                            <td>Voir l'état des fichiers (modifiés, indexés)</td>
+                        </tr>
+                        <tr>
+                            <td><code>git add fichier</code></td>
+                            <td>Ajouter un fichier à l'index (préparer la version)</td>
+                        </tr>
+                        <tr>
+                            <td><code>git commit -m "msg"</code></td>
+                            <td>Enregistrer la version avec un message</td>
+                        </tr>
+                        <tr>
+                            <td><code>git log</code></td>
+                            <td>Voir l'historique des versions</td>
+                        </tr>
+                        <tr>
+                            <td><code>.gitignore</code></td>
+                            <td>Fichier listant ce que Git doit ignorer (*.aux, *.log)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                [cite_start]<h3>Dépôt Distant & Collaboration [cite: 422, 450, 667, 3516]</h3>
+                <table>
+                    <tr>
+                        <th>Commande</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td><code>git clone &lt;url&gt;</code></td>
+                        <td>Récupérer un dépôt distant (crée un dossier)</td>
+                    </tr>
+                    <tr>
+                        <td><code>git push</code></td>
+                        <td>Envoyer ses versions locales vers le serveur</td>
+                    </tr>
+                    <tr>
+                        <td><code>git pull</code></td>
+                        <td>Récupérer les versions du serveur et fusionner</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Conflit</strong></td>
+                        <td>Survient au <code>pull</code> si modifications incompatibles.
+                            <br>Marqueurs : <code>&lt;&lt;&lt;&lt; HEAD</code> (local) et <code>====</code> et <code>&gt;&gt;&gt;&gt;</code> (distant).
+                            <br>Solution : Éditer le fichier, choisir le code, <code>git add</code>, <code>git commit</code>.</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="shell">
+            <h2>6. [cite_start]Rappel Shell (Bash) [cite: 4041]</h2>
+            <ul>
+                <li><code>cd dossier</code> : Changer de répertoire.</li>
+                <li><code>ls -a</code> : Lister les fichiers (y compris cachés).</li>
+                <li><code>pwd</code> : Afficher le répertoire courant.</li>
+                <li><code>mkdir dossier</code> : Créer un dossier.</li>
+                <li><code>rm fichier</code> : Supprimer un fichier.</li>
+                <li><code>mv ancien nouveau</code> : Renommer ou déplacer.</li>
+                <li><code>cp source dest</code> : Copier.</li>
+            </ul>
+        </section>
+
+    </main>
+    
+    <footer>
+        <p>Basé sur les supports de cours et TP de Rédaction Mathématique et Informatique.</p>
+    </footer>
+</body>
+</html>
