@@ -310,6 +310,94 @@ git init        # Créer un dépôt local</code></pre>
                 <li><code>cp source dest</code> : Copier.</li>
             </ul>
         </section>
+        <section id="preambule">
+            <h2>7. Préambule Complet (Prêt à l'emploi)</h2>
+            <div class="card">
+                <h3>À copier-coller au début de votre fichier .tex</h3>
+                <p>Ce bloc regroupe tous les paquets et configurations vus dans les TP 1 à 5.</p>
+                <pre><code class="language-tex">% =============================================================
+% PRÉAMBULE FONCTIONNEL - SYNTHÈSE DU COURS
+% =============================================================
+
+% 1. Classe du document
+% Options : a4paper, 11pt, french (langue globale)
+\documentclass[a4paper, 11pt, french]{article}
+
+% 2. Encodage et Polices
+\usepackage[utf8]{inputenc}  % Encodage du fichier source
+\usepackage[T1]{fontenc}     % Encodage de sortie (pdf)
+\usepackage{lmodern}         % Police vectorielle de meilleure qualité (Latin Modern)
+\usepackage{babel}           % Support linguistique (typographie française)
+\usepackage{microtype}       % Amélioration de la justification et des espacements
+
+% 3. Mathématiques
+\usepackage{mathtools}       % Outils mathématiques avancés (inclut amsmath)
+\usepackage{amssymb}         % Symboles mathématiques supplémentaires
+\usepackage{amsthm}          % Environnements théorèmes et preuves
+
+% Définition de l'environnement théorème (vu en TP2)
+\newtheorem{theorem}{Théorème}
+
+% 4. Mise en forme et Structure
+\usepackage{enumitem}        % Personnalisation des listes (itemize, enumerate)
+\usepackage{xcolor}          % Gestion des couleurs
+\usepackage{xspace}          % Gestion intelligente des espaces dans les macros
+\usepackage{geometry}        % (Optionnel) Pour gérer les marges si besoin
+
+% 5. Tableaux
+\usepackage{multirow}        % Fusion de cellules verticales
+\usepackage{hhline}          % Lignes horizontales complexes
+\usepackage{array}           % Amélioration des colonnes de tableaux
+\usepackage{makecell}        % Mise en forme des cellules et entêtes
+
+% 6. Images et Figures
+\usepackage{graphicx}        % Inclusion d'images (\includegraphics)
+\usepackage{float}           % Gestion du placement des flottants (option H)
+\usepackage{subcaption}      % Sous-figures
+\usepackage{wrapfig}         % Texte autour des figures
+
+% 7. Code informatique
+\usepackage{listings}        % Insertion de code source
+\usepackage{upquote}         % Pour avoir de vrais guillemets en verbatim/code
+
+% Configuration de base pour listings (vu en TP5) 
+\lstset{
+    basicstyle=\ttfamily\small, % Police monospace
+    frame=single,               % Encadré
+    tabsize=2,                  % Taille des tabulations
+    breaklines=true,            % Retour à la ligne automatique
+    columns=fullflexible
+}
+
+% 8. Références et Liens (À charger en dernier)
+\usepackage{hyperref}        % Rend les références cliquables (interne/externe)
+\hypersetup{
+    colorlinks=true,         % Liens colorés
+    urlcolor=blue,           % Couleur des URL
+    linkcolor=black          % Couleur des liens internes
+}
+\usepackage{cleveref}        % Référencement intelligent (\cref)
+
+% =============================================================
+% INFORMATIONS DU DOCUMENT (MÉTA-DONNÉES)
+% =============================================================
+\title{Titre du Document}
+\author{Votre Nom}
+\date{\today}
+
+% =============================================================
+% DÉBUT DU DOCUMENT
+% =============================================================
+\begin{document}
+
+\maketitle           % Affiche le titre
+\tableofcontents     % Affiche la table des matières
+
+% Votre contenu ici...
+
+\end{document}</code></pre>
+            </div>
+        </section>
 
     </main>
     
@@ -317,4 +405,5 @@ git init        # Créer un dépôt local</code></pre>
         <p>Basé sur les supports de cours et TP de Rédaction Mathématique et Informatique.</p>
     </footer>
 </body>
+
 </html>
