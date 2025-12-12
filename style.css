@@ -19,6 +19,7 @@ body {
     padding: 0;
 }
 
+/* --- HEADER & NAV --- */
 header {
     background-color: var(--primary-color);
     color: white;
@@ -54,6 +55,7 @@ nav a:hover {
     background: var(--accent-color);
 }
 
+/* --- CONTENU PRINCIPAL --- */
 main {
     padding: 20px;
     max-width: 1200px;
@@ -160,7 +162,6 @@ footer {
     body { background-color: white; }
     .card { break-inside: avoid; border: 1px solid #000; box-shadow: none; }
     h2 { border-bottom: 1px solid #000; }
-
 }
 
 /* --- STYLE DU CHAT SECRET --- */
@@ -274,6 +275,12 @@ footer {
     border-radius: 20px;
     margin: 0 5px;
     outline: none;
+}
+
+/* Ajout pour l'accessibilité et le confort visuel */
+.chat-input input[type="text"]:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
 }
 
 .chat-input input[type="file"] {
