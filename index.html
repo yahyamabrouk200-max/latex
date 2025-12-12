@@ -404,7 +404,134 @@ git init        # Créer un dépôt local</code></pre>
     <footer>
         <p>Basé sur les supports de cours et TP de Rédaction Mathématique et Informatique.</p>
     </footer>
+    <div id="secret-widget">
+    <button id="secret-btn" title="Assistant Secret" onclick="toggleChat()">🤖</button>
+
+    <div id="chat-window">
+        <div class="chat-header">
+            <span>IA Assistant (Démo)</span>
+            <button onclick="toggleChat()">×</button>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="message bot">Bonjour ! Je suis une interface de démo. Je ne peux pas vraiment lire vos PDF sans serveur, mais je suis prêt à recevoir vos commandes !</div>
+        </div>
+        <div class="chat-input">
+            <label for="file-upload" class="upload-btn">📎</label>
+            <input type="file" id="file-upload" accept="image/*,.pdf">
+            
+            <input type="text" id="user-input" placeholder="Posez une question..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ---------------------------------------------------------
+    // CONFIGURATION (À REMPLIR)
+    // ---------------------------------------------------------
+    const API_KEY = "VOTRE_API_KEY_ICI"; // <--- Collez votre clé ici entre les guillemets
+    
+    // Modèle utilisé (Gemini 1.5 Flash est rapide et gère les images/PDFs)
+    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+
+    function toggleChat() {
+        const chat = document.getElementById('chat-window');
+        chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    // Fonction pour convertir un fichier en Base64 (nécessaire pour l'API)
+    const fileToGenerativePart = (file) => {
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve({
+                inlineData: {
+                    data: reader.result.split(',')[1],
+                    mimeType: file.type
+                }
+            });
+            reader.readAsDataURL(file);
+        });
+    };
+
+    async function sendMessage() {
+        const input = document.getElementById('user-input');
+        const fileInput = document.getElementById('file-upload');
+        const messages = document.getElementById('chat-messages');
+        const text = input.value.trim();
+        const file = fileInput.files[0];
+
+        // Vérification vide
+        if (text === "" && !file) return;
+
+        // 1. Affichage du message utilisateur
+        let userMsgHtml = `<div class="message user">${text}`;
+        if (file) {
+            userMsgHtml += `<br><small>📎 ${file.name}</small>`;
+        }
+        userMsgHtml += `</div>`;
+        messages.innerHTML += userMsgHtml;
+        messages.scrollTop = messages.scrollHeight;
+
+        // Reset des champs input (pour éviter le spam)
+        input.value = "";
+        fileInput.value = "";
+
+        // 2. Affichage "En train d'écrire..."
+        const loadingId = "loading-" + Date.now();
+        messages.innerHTML += `<div class="message bot" id="${loadingId}">...</div>`;
+        messages.scrollTop = messages.scrollHeight;
+
+        try {
+            // Préparation du contenu pour Gemini
+            const parts = [];
+            if (text) parts.push({ text: text });
+            if (file) {
+                const imagePart = await fileToGenerativePart(file);
+                parts.push(imagePart);
+            }
+
+            // Appel API
+            const response = await fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    contents: [{ parts: parts }]
+                })
+            });
+
+            const data = await response.json();
+
+            // Retirer le message de chargement
+            document.getElementById(loadingId).remove();
+
+            // Gestion de la réponse ou erreur
+            if (data.error) {
+                messages.innerHTML += `<div class="message bot" style="color:red">Erreur : ${data.error.message}</div>`;
+            } else {
+                const aiText = data.candidates[0].content.parts[0].text;
+                // Conversion simple des sauts de ligne et du markdown basique (gras)
+                const formattedText = aiText
+                    .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>') // Gras
+                    .replace(/\n/g, '<br>'); // Sauts de ligne
+                
+                messages.innerHTML += `<div class="message bot">${formattedText}</div>`;
+            }
+
+        } catch (error) {
+            document.getElementById(loadingId).remove();
+            messages.innerHTML += `<div class="message bot" style="color:red">Erreur de connexion (Vérifiez votre internet ou la clé API).</div>`;
+            console.error(error);
+        }
+
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function handleKeyPress(e) {
+        if (e.key === 'Enter') sendMessage();
+    }
+</script>
 </body>
 
 </html>
+
 
