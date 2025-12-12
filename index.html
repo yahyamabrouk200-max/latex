@@ -1,4 +1,4 @@
-s<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -25,28 +25,28 @@ s<!DOCTYPE html>
             <h2>1. Structure LaTeX & Compilation</h2>
             
             <div class="card">
-                <h3>Squelette Minimal</h3>
+                [cite_start]<h3>Squelette Minimal [cite: 2566, 4630]</h3>
                 <pre><code>\documentclass[french]{article} % Classe + Option langue
-\usepackage[utf8]{inputenc}     % Encodage entrée
-\usepackage[T1]{fontenc}        % Encodage sortie
-\usepackage{babel}              % Support langue
-\usepackage{hyperref}           % Liens cliquables
+[cite_start]\usepackage[utf8]{inputenc}     % Encodage entrée [cite: 2437]
+[cite_start]\usepackage[T1]{fontenc}        % Encodage sortie [cite: 2433]
+[cite_start]\usepackage{babel}              % Support langue [cite: 2430]
+[cite_start]\usepackage{hyperref}           % Liens cliquables [cite: 3097]
 
 \title{Titre}
 \author{Auteur}
 \date{\today}
 
 \begin{document}
-    \maketitle                  % Affiche le titre
-    \tableofcontents            % Table des matières
+    [cite_start]\maketitle                  % Affiche le titre [cite: 4533]
+    [cite_start]\tableofcontents            % Table des matières [cite: 4714]
 
-    \section{Introduction}      %
+    [cite_start]\section{Introduction}      % [cite: 4718]
     Votre texte ici.
 \end{document}</code></pre>
             </div>
 
             <div class="card">
-                <h3>Compilation</h3>
+                [cite_start]<h3>Compilation [cite: 3203, 3230]</h3>
                 <table>
                     <tr>
                         <th>Action</th>
@@ -54,15 +54,15 @@ s<!DOCTYPE html>
                     </tr>
                     <tr>
                         <td>Commande</td>
-                        <td><code>pdflatex fichier.tex</code></td>
+                        [cite_start]<td><code>pdflatex fichier.tex</code> [cite: 1330]</td>
                     </tr>
                     <tr>
                         <td>Fichiers Aux.</td>
-                        <td><code>.aux</code> (références), <code>.toc</code> (table des matières), <code>.log</code> (journal)</td>
+                        [cite_start]<td><code>.aux</code> (références), <code>.toc</code> (table des matières), <code>.log</code> (journal) [cite: 3223, 3234]</td>
                     </tr>
                     <tr>
                         <td>Répétition</td>
-                        <td>Compiler <strong>2 fois</strong> si références ou TOC incorrectes</td>
+                        [cite_start]<td>Compiler <strong>2 fois</strong> si références ou TOC incorrectes [cite: 3251]</td>
                     </tr>
                 </table>
             </div>
@@ -73,7 +73,7 @@ s<!DOCTYPE html>
             
             <div class="split">
                 <div class="card">
-                    <h3>Polices & Styles</h3>
+                    [cite_start]<h3>Polices & Styles [cite: 3596, 3639, 3745]</h3>
                     <table>
                         <tr>
                             <th>Effet</th>
@@ -87,7 +87,7 @@ s<!DOCTYPE html>
                         </tr>
                         <tr>
                             <td><i>Italique</i></td>
-                            <td><code>\emph{...}</code> (préferé) ou <code>\textit{...}</code></td>
+                            <td><code>\emph{...}</code> (préféré) ou <code>\textit{...}</code></td>
                             <td><code>\itshape</code></td>
                         </tr>
                         <tr>
@@ -118,18 +118,18 @@ s<!DOCTYPE html>
                 </div>
 
                 <div class="card">
-                    <h3>Listes</h3>
+                    [cite_start]<h3>Listes [cite: 2604, 2618]</h3>
                     <ul>
                         <li><strong>Numérotée :</strong> <code>\begin{enumerate} \item ... \end{enumerate}</code></li>
                         <li><strong>À puces :</strong> <code>\begin{itemize} \item ... \end{itemize}</code></li>
                         <li><strong>Descriptive :</strong> <code>\begin{description} \item[Titre] ... \end{description}</code></li>
-                        <li><em>Paquet utile :</em> <code>enumitem</code> pour personnaliser.</li>
+                        [cite_start]<li><em>Paquet utile :</em> <code>enumitem</code> pour personnaliser[cite: 2689].</li>
                     </ul>
                 </div>
             </div>
 
             <div class="card">
-                <h3>Références Croisées</h3>
+                [cite_start]<h3>Références Croisées [cite: 3022, 3130]</h3>
                 <table>
                     <tr>
                         <th>Action</th>
@@ -145,11 +145,11 @@ s<!DOCTYPE html>
                     </tr>
                     <tr>
                         <td>Lien Web</td>
-                        <td><code>\url{...}</code> ou <code>\href{url}{texte}</code> (avec paquet <code>hyperref</code>)</td>
+                        [cite_start]<td><code>\url{...}</code> ou <code>\href{url}{texte}</code> (avec paquet <code>hyperref</code>) [cite: 3126]</td>
                     </tr>
                     <tr>
                         <td>Référence intelligente</td>
-                        <td><code>\cref{...}</code> (avec paquet <code>cleveref</code>, ajoute "Section" auto)</td>
+                        [cite_start]<td><code>\cref{...}</code> (avec paquet <code>cleveref</code>, ajoute "Section" auto) [cite: 3138]</td>
                     </tr>
                 </table>
             </div>
@@ -160,13 +160,13 @@ s<!DOCTYPE html>
 
             <div class="split">
                 <div class="card">
-                    <h3>Modes Mathématiques</h3>
+                    [cite_start]<h3>Modes Mathématiques [cite: 5061]</h3>
                     <ul>
                         <li><strong>Inline (dans le texte) :</strong> <code>$ ... $</code> ou <code>\( ... \)</code></li>
-                        <li><strong>Display (centré) :</strong> <code>\[ ... \]</code> ou environnement <code>equation</code></li>
-                        <li><strong>Paquets requis :</strong> <code>mathtools</code>, <code>amssymb</code>, <code>amsthm</code></li>
+                        [cite_start]<li><strong>Display (centré) :</strong> <code>\[ ... \]</code> ou environnement <code>equation</code> [cite: 5090]</li>
+                        [cite_start]<li><strong>Paquets requis :</strong> <code>mathtools</code>, <code>amssymb</code>, <code>amsthm</code> [cite: 1351]</li>
                     </ul>
-                    <h4>Symboles courants</h4>
+                    [cite_start]<h4>Symboles courants [cite: 4952, 2580]</h4>
                     <p>
                         Indice : <code>_{i}</code> | Exposant : <code>^{2}</code> | Fraction : <code>\frac{a}{b}</code><br>
                         Somme : <code>\sum</code> | Produit : <code>\prod</code> | Intégrale : <code>\int</code><br>
@@ -176,7 +176,7 @@ s<!DOCTYPE html>
                 </div>
 
                 <div class="card">
-                    <h3>Tableaux (Tabular)</h3>
+                    [cite_start]<h3>Tableaux (Tabular) [cite: 1014, 1034]</h3>
                     <pre><code>\begin{tabular}{|l|c|r|} % Colonnes: gauche, centré, droite
     \hline
     A & B & C \\      % & sépare les colonnes, \\ change de ligne
@@ -187,7 +187,7 @@ s<!DOCTYPE html>
                     <ul>
                         <li><code>\hline</code> : ligne horizontale.</li>
                         <li><code>|</code> : ligne verticale (dans la définition des colonnes).</li>
-                        <li>Fusion : <code>\multicolumn{nb}{align}{texte}</code>.</li>
+                        [cite_start]<li>Fusion : <code>\multicolumn{nb}{align}{texte}</code>[cite: 1043].</li>
                     </ul>
                 </div>
             </div>
@@ -197,33 +197,33 @@ s<!DOCTYPE html>
             <h2>4. Images, Code & Commandes</h2>
             
             <div class="card">
-                <h3>Insertion d'Images</h3>
+                [cite_start]<h3>Insertion d'Images [cite: 1108, 1916]</h3>
                 <p>Paquet : <code>graphicx</code></p>
-                <pre><code>\begin{figure}[h] % Environnement flottant (h=here, t=top, b=bottom)
+                [cite_start]<pre><code>\begin{figure}[h] % Environnement flottant (h=here, t=top, b=bottom) [cite: 1962]
     \centering
-    \includegraphics[width=0.8\linewidth]{image.png} % Options: scale, width, angle
-    \caption{Ma légende} %
+    [cite_start]\includegraphics[width=0.8\linewidth]{image.png} % Options: scale, width, angle [cite: 1120]
+    [cite_start]\caption{Ma légende} % [cite: 1901]
     \label{fig:mon-image}
 \end{figure}</code></pre>
             </div>
 
             <div class="card">
-                <h3>Insertion de Code</h3>
+                [cite_start]<h3>Insertion de Code [cite: 1707, 1726]</h3>
                 <p>Paquet : <code>listings</code></p>
                 <ul>
-                    <li><strong>Dans le texte :</strong> <code>\lstinline{print("hello")}</code></li>
+                    [cite_start]<li><strong>Dans le texte :</strong> <code>\lstinline{print("hello")}</code> [cite: 1706]</li>
                     <li><strong>Environnement :</strong> <code>\begin{lstlisting} ... \end{lstlisting}</code></li>
-                    <li><strong>Depuis un fichier :</strong> <code>\lstinputlisting{fichier.py}</code></li>
-                    <li><strong>Configuration :</strong> <code>\lstset{language=Python, basicstyle=\ttfamily}</code></li>
+                    [cite_start]<li><strong>Depuis un fichier :</strong> <code>\lstinputlisting{fichier.py}</code> [cite: 1708]</li>
+                    [cite_start]<li><strong>Configuration :</strong> <code>\lstset{language=Python, basicstyle=\ttfamily}</code> [cite: 1269]</li>
                 </ul>
             </div>
 
             <div class="card">
-                <h3>Commandes Personnalisées</h3>
+                [cite_start]<h3>Commandes Personnalisées [cite: 1124, 1156]</h3>
                 <ul>
                     <li><strong>Simple :</strong> <code>\newcommand{\monNom}{Bruno}</code></li>
                     <li><strong>Avec argument :</strong> <code>\newcommand{\important}[1]{\textbf{#1}}</code> (usage: <code>\important{Texte}</code>)</li>
-                    <li><strong>Argument optionnel :</strong> <code>\newcommand{\cmd}[2][defaut]{#1 #2}</code></li>
+                    [cite_start]<li><strong>Argument optionnel :</strong> <code>\newcommand{\cmd}[2][defaut]{#1 #2}</code> [cite: 1168]</li>
                 </ul>
             </div>
         </section>
@@ -233,14 +233,14 @@ s<!DOCTYPE html>
 
             <div class="split">
                 <div class="card">
-                    <h3>Configuration & Init</h3>
+                    [cite_start]<h3>Configuration & Init [cite: 3385, 3359]</h3>
                     <pre><code>git config --global user.name "Nom"
 git config --global user.email "email"
 git init        # Créer un dépôt local</code></pre>
                 </div>
 
                 <div class="card">
-                    <h3>Workflow de base</h3>
+                    [cite_start]<h3>Workflow de base [cite: 29, 35, 109, 3470]</h3>
                     <table>
                         <tr>
                             <th>Commande</th>
@@ -271,7 +271,7 @@ git init        # Créer un dépôt local</code></pre>
             </div>
 
             <div class="card">
-                <h3>Dépôt Distant & Collaboration</h3>
+                [cite_start]<h3>Dépôt Distant & Collaboration [cite: 422, 450, 667, 3516]</h3>
                 <table>
                     <tr>
                         <th>Commande</th>
@@ -300,7 +300,7 @@ git init        # Créer un dépôt local</code></pre>
         </section>
 
         <section id="shell">
-            <h2>6. Rappel Shell (Bash)</h2>
+            <h2>6. [cite_start]Rappel Shell (Bash) [cite: 4041]</h2>
             <ul>
                 <li><code>cd dossier</code> : Changer de répertoire.</li>
                 <li><code>ls -a</code> : Lister les fichiers (y compris cachés).</li>
@@ -322,45 +322,45 @@ git init        # Créer un dépôt local</code></pre>
 % =============================================================
 
 % 1. Classe du document
-% Options : a4paper, 11pt, french (langue globale)
+[cite_start]% Options : a4paper, 11pt, french (langue globale) [cite: 5373]
 \documentclass[a4paper, 11pt, french]{article}
 
 % 2. Encodage et Polices
-\usepackage[utf8]{inputenc}  % Encodage du fichier source
-\usepackage[T1]{fontenc}     % Encodage de sortie (pdf)
-\usepackage{lmodern}         % Police vectorielle de meilleure qualité (Latin Modern)
-\usepackage{babel}           % Support linguistique (typographie française)
-\usepackage{microtype}       % Amélioration de la justification et des espacements
+[cite_start]\usepackage[utf8]{inputenc}  % Encodage du fichier source [cite: 5357]
+[cite_start]\usepackage[T1]{fontenc}     % Encodage de sortie (pdf) [cite: 5350]
+[cite_start]\usepackage{lmodern}         % Police vectorielle de meilleure qualité (Latin Modern) [cite: 576]
+[cite_start]\usepackage{babel}           % Support linguistique (typographie française) [cite: 5346]
+[cite_start]\usepackage{microtype}       % Amélioration de la justification et des espacements [cite: 1917]
 
 % 3. Mathématiques
-\usepackage{mathtools}       % Outils mathématiques avancés (inclut amsmath)
-\usepackage{amssymb}         % Symboles mathématiques supplémentaires
-\usepackage{amsthm}          % Environnements théorèmes et preuves
+[cite_start]\usepackage{mathtools}       % Outils mathématiques avancés (inclut amsmath) [cite: 60]
+[cite_start]\usepackage{amssymb}         % Symboles mathématiques supplémentaires [cite: 60]
+\usepackage{amsthm}          % Environnements théorèmes et preuves 
 
-% Définition de l'environnement théorème (vu en TP2)
+[cite_start]% Définition de l'environnement théorème (vu en TP2) [cite: 69]
 \newtheorem{theorem}{Théorème}
 
 % 4. Mise en forme et Structure
-\usepackage{enumitem}        % Personnalisation des listes (itemize, enumerate)
-\usepackage{xcolor}          % Gestion des couleurs
-\usepackage{xspace}          % Gestion intelligente des espaces dans les macros
+[cite_start]\usepackage{enumitem}        % Personnalisation des listes (itemize, enumerate) [cite: 1800]
+[cite_start]\usepackage{xcolor}          % Gestion des couleurs [cite: 688]
+[cite_start]\usepackage{xspace}          % Gestion intelligente des espaces dans les macros [cite: 4463]
 \usepackage{geometry}        % (Optionnel) Pour gérer les marges si besoin
 
 % 5. Tableaux
-\usepackage{multirow}        % Fusion de cellules verticales
-\usepackage{hhline}          % Lignes horizontales complexes
-\usepackage{array}           % Amélioration des colonnes de tableaux
-\usepackage{makecell}        % Mise en forme des cellules et entêtes
+[cite_start]\usepackage{multirow}        % Fusion de cellules verticales [cite: 4393]
+[cite_start]\usepackage{hhline}          % Lignes horizontales complexes [cite: 4394]
+[cite_start]\usepackage{array}           % Amélioration des colonnes de tableaux [cite: 4395]
+[cite_start]\usepackage{makecell}        % Mise en forme des cellules et entêtes [cite: 4396]
 
 % 6. Images et Figures
-\usepackage{graphicx}        % Inclusion d'images (\includegraphics)
-\usepackage{float}           % Gestion du placement des flottants (option H)
-\usepackage{subcaption}      % Sous-figures
-\usepackage{wrapfig}         % Texte autour des figures
+[cite_start]\usepackage{graphicx}        % Inclusion d'images (\includegraphics) [cite: 4441]
+[cite_start]\usepackage{float}           % Gestion du placement des flottants (option H) [cite: 1239]
+[cite_start]\usepackage{subcaption}      % Sous-figures [cite: 1249]
+[cite_start]\usepackage{wrapfig}         % Texte autour des figures [cite: 1257]
 
 % 7. Code informatique
-\usepackage{listings}        % Insertion de code source
-\usepackage{upquote}         % Pour avoir de vrais guillemets en verbatim/code
+[cite_start]\usepackage{listings}        % Insertion de code source [cite: 957]
+[cite_start]\usepackage{upquote}         % Pour avoir de vrais guillemets en verbatim/code [cite: 1015]
 
 % Configuration de base pour listings (vu en TP5) 
 \lstset{
@@ -372,16 +372,16 @@ git init        # Créer un dépôt local</code></pre>
 }
 
 % 8. Références et Liens (À charger en dernier)
-\usepackage{hyperref}        % Rend les références cliquables (interne/externe)
+[cite_start]\usepackage{hyperref}        % Rend les références cliquables (interne/externe) [cite: 2205]
 \hypersetup{
     colorlinks=true,         % Liens colorés
-    urlcolor=blue,           % Couleur des URL
+    [cite_start]urlcolor=blue,           % Couleur des URL [cite: 705]
     linkcolor=black          % Couleur des liens internes
 }
-\usepackage{cleveref}        % Référencement intelligent (\cref)
+[cite_start]\usepackage{cleveref}        % Référencement intelligent (\cref) [cite: 2238]
 
 % =============================================================
-% INFORMATIONS DU DOCUMENT (MÉTA-DONNÉES)
+[cite_start]% INFORMATIONS DU DOCUMENT (MÉTA-DONNÉES) [cite: 5364]
 % =============================================================
 \title{Titre du Document}
 \author{Votre Nom}
@@ -392,8 +392,8 @@ git init        # Créer un dépôt local</code></pre>
 % =============================================================
 \begin{document}
 
-\maketitle           % Affiche le titre
-\tableofcontents     % Affiche la table des matières
+[cite_start]\maketitle           % Affiche le titre [cite: 5366]
+[cite_start]\tableofcontents     % Affiche la table des matières [cite: 5393]
 
 % Votre contenu ici...
 
@@ -407,28 +407,5 @@ git init        # Créer un dépôt local</code></pre>
         <p>Basé sur les supports de cours et TP de Rédaction Mathématique et Informatique.</p>
     </footer>
 
-    <div id="secret-widget">
-        <button id="secret-btn" title="Assistant Secret" onclick="toggleChat()">🤖</button>
-
-        <div id="chat-window">
-            <div class="chat-header">
-                <span>IA Assistant (Démo)</span>
-                <button onclick="toggleChat()">×</button>
-            </div>
-            <div class="chat-messages" id="chat-messages">
-                <div class="message bot">Bonjour ! Je suis une interface de démo. Je ne peux pas vraiment lire vos PDF sans serveur, mais je suis prêt à recevoir vos commandes !</div>
-            </div>
-            <div class="chat-input">
-                <label for="file-upload" class="upload-btn">📎</label>
-                <input type="file" id="file-upload" accept="image/*,.pdf">
-                
-                <input type="text" id="user-input" placeholder="Posez une question..." onkeypress="handleKeyPress(event)">
-                <button onclick="sendMessage()">➤</button>
-            </div>
-        </div>
-    </div>
-
-
 </body>
 </html>
-
